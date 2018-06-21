@@ -1,0 +1,34 @@
+{
+  "name": "openstars",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "animate.css": "^3.6.1",
+    "granim": "^1.1.1",
+    "history": "^4.7.2",
+    "react": "^15.6.2",
+    "react-bootstrap": "^0.32.1",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^15.6.2",
+    "react-hash-route": "^1.1.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.2.2",
+    "react-router-hash-link": "^1.2.0",
+    "react-scripts": "^1.1.4",
+    "react-scrollchor": "^5.1.0",
+    "react-stormpath": "^2.0.1",
+    "react-three-renderer": "^3.2.4",
+    "react-tween": "^0.4.0-alpha.17",
+    "rellax": "^1.6.2",
+    "three": "^0.86.0",
+    "three-orbit-controls": "^82.1.0",
+    "three-orbitcontrols": "^2.1.2",
+    "threex": "^1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
