@@ -22,8 +22,7 @@ class App extends React.Component{
                 
 				<div className="divCanvas">
                     <ThreeContainer
-                        width={window.innerWidth}
-                        height={window.innerHeight}/>
+                       />
 				</div>
 
 				<div id="equipe">
@@ -62,7 +61,8 @@ class App extends React.Component{
 				</div>
 				
 				<div id="footer">
-					<Footer />
+					<Footer width={window.innerWidth}
+                          height= '200' />
 				</div>
     		</body>
     	);
