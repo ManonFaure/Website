@@ -25,4 +25,20 @@ class Accueil extends React.Component{
     }
 }
 
+// essayer d'utiliser un dom virtuel : example :
+/*function CoolComponent() {
+
+    return <p>Youpi So Cool !</p>
+
+}
+
+
+ReactDOM.render(
+
+    <CoolComponent />,
+
+    document.getElementById('root')
+
+)*/
+
 export default Accueil;
