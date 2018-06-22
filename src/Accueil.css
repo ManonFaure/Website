@@ -2,72 +2,50 @@
 	z-index: 4;
 	position: relative;
 	/*background-image: url("./background.jpg");*/
-	background-repeat: no-repeat;
+	/*background-repeat: no-repeat;*/
 	height: 100%;
     width: 100%;
 }
 
 .image {
-	position: absolute;
-	width: 100%
-}
-
-.home {
-    min-height: 850px;/*786px*/
-    position: relative;
-    display: table;
-}
-
-/*.home .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    /*opacity: 0.6;*/
-    /*background-color: #000000;*/
-/*}*/
-.home-content {
-    display: table-cell;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-    padding-bottom: 15.6rem;
-    position: relative;
-    overflow: hidden;
 }
-
-/*.home-content h3 {
-    font-family: "montserrat-medium", sans-serif;
-    font-size: 1.6rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: .3rem;
+.parent {
     position: relative;
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-    margin-left: 6px;
-}*/
+  }
 
-/*.home-content h1 {
-    /*font-family: "montserrat-medium", sans-serif;*/
-    /*font-family: Chalkduster, fantasy;
-    font-size: 6.3rem;
-    line-height: 1.333;
-    margin-top: 0;
-    color: #FFFFFF;
-}*/
-h1 {
-    font-family: Chalkduster, fantasy;
+.centre {
+    display: flex;
+    min-height: 90vh;
+    border-radius: 3px;
 }
 
 .texte {
-    font-family: Chalkduster, fantasy;
-    text-align: center;
+    margin: auto;
+    background-color: black;
     opacity: 0.8;
     color: white;
-    background-color: #000000;
+    text-align: center;
     width: 50%;
-    /*max-width: 1200px;*/
-    margin: 0 auto;
+    position: relative; 
+    font-size: 150%;
+}
+
+.texte h1, h3{
+    font-family: "montserrat-medium", sans-serif;
+    text-transform: uppercase;
+}
+
+.texte h1{
+    font-size: 300%;
+}
+
+.texte h3 {
+    font-size: 130%;
+}
+
+.texte q{
+    font-family: Chalkduster, fantasy;
+    font-style: italic;
 }

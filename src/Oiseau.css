@@ -41,16 +41,19 @@
   }
 
 .paragraphe2 {
-    top: 200px;
+  top: 200px;
 	margin: 0 auto;
 	width: 50%;
 	text-align: center;
 	z-index: 4;
-	position: relative;
+  position: relative;
+  font-size: 150%;
 }
 
-q {
-    font-style: italic;
+.conteneur q {
+  font-style: italic;
+  font-family: Chalkduster, fantasy;
+  text-align: justify;
 }
 
 .conteneur {
@@ -64,14 +67,16 @@ q {
 }
 
 .conteneur h1 {
-    font-family: "montserrat-medium", sans-serif;
-    font-size: 6.3rem;
-    line-height: 1.333;
-    margin-top: 0;
-    color: #FFFFFF;
+  font-size: 300%;
+  font-family: Trattatello, fantasy;
+  text-transform: uppercase;
+  color: white;
 }
 
-
+.conteneur h1::first-letter {
+  color: cornflowerblue;
+  font-size: 130%;
+}
 
 
 

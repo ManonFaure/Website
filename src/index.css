@@ -17,13 +17,3 @@ body {
 	z-index: 4;
 	position: relative;
 }
-
-.paragraphe {
-	margin: 0 auto;
-	width: 50%;
-	text-align: center;
-    border: 1px solid orangered;
-	z-index: 4;
-	position: relative;
-	
-}
