@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router'
+import {Route} from 'react-router'
 import './Navigation.css';
 import Accueil from './Accueil';
 import Equipe from './Equipe';
@@ -8,8 +8,8 @@ import Description from './Description';
 import Public from './Public';
 import Inscription from './Inscription';
 import Connection from './Connection';
-import { Nav, NavItem } from 'react-bootstrap';
-import { Switch, Link } from 'react-router-dom';
+import {Nav, NavItem} from 'react-bootstrap';
+import {Switch, Link} from 'react-router-dom';
 import Scrollchor from 'react-scrollchor';
 /*import accueil from './img/accueil.png';
 import qui from './img/qui.png';
@@ -17,17 +17,17 @@ import genese from './img/genese.png';
 import planete from './img/planete.png';
 import vise from './img/public.png';*/
 import Contact from './Contact';
-import { Button, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
+import {Button, Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 
-class Header extends React.Component{
+class Header extends React.Component {
 
     render() {
-        
+
         require("react-bootstrap/lib/NavbarHeader");
         return (
 
             <header className="s-header">
-    
+
                 {/*<div className="navigation">
                     <Nav brand="OPEN STARS" className="topnav" activeKey={1} height="1" width="1">
                         <NavItem>OPEN STARS</NavItem>
@@ -57,7 +57,7 @@ class Header extends React.Component{
                 <Navbar fixedTop>
                     <Navbar.Header>
                         <Navbar.Brand>
-                        <a href="">Open Stars</a>
+                            <a href="">Open Stars</a>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
@@ -89,9 +89,8 @@ class Header extends React.Component{
                         </NavItem>
                     </Nav>
                 </Navbar>;
-                
-            
-                 
+
+
             </header>
         )
     }
