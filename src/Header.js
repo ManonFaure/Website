@@ -17,7 +17,13 @@ import genese from './img/genese.png';
 import planete from './img/planete.png';
 import vise from './img/public.png';*/
 import Contact from './Contact';
+<<<<<<< HEAD
 import {Button, Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
+=======
+import { Button, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
+import {Popup, Prompt} from 'react-popup';
+
+>>>>>>> manon
 
 class Header extends React.Component {
 
@@ -50,8 +56,8 @@ class Header extends React.Component {
                     <Route exact path="/description" component={Description}/>
                     <Route exact path="/public" component={Public}/>
                     <Route exact path="/contact" component={Contact}/>
-                    <Route exact path="/inscription" component={Inscription}/>
-                    <Route exact path="/connection" component={Connection}/>
+                    {/*<Route exact path="/inscription" component={Inscription}/>
+                    <Route exact path="/connection" component={Connection}/>*/}
                 </Switch>
 
                 <Navbar fixedTop>
@@ -61,22 +67,22 @@ class Header extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={1}><Scrollchor to="" className="und-link">
+                        <NavItem eventKey={1}><Scrollchor to="">
                             Accueil
                         </Scrollchor></NavItem>
-                        <NavItem eventKey={2}><Scrollchor to="equipe" className="und-link">
+                        <NavItem eventKey={2}><Scrollchor to="equipe">
                             Qui sommes-nous ?
                         </Scrollchor></NavItem>
-                        <NavItem eventKey={3}><Scrollchor to="naissance" className="und-link">
+                        <NavItem eventKey={3}><Scrollchor to="naissance">
                             Genèse du projet
                         </Scrollchor></NavItem>
-                        <NavItem eventKey={4}><Scrollchor to="description" className="und-link">
+                        <NavItem eventKey={4}><Scrollchor to="description">
                             Qu'est-ce qu'Open Stars ?
                         </Scrollchor></NavItem>
-                        <NavItem eventKey={5}><Scrollchor to="public" className="und-link">
+                        <NavItem eventKey={5}><Scrollchor to="public">
                             Public visé
                         </Scrollchor></NavItem>
-                        <NavItem eventKey={6}><Scrollchor to="contact" className="und-link">
+                        <NavItem eventKey={6}><Scrollchor to="contact">
                             Contact
                         </Scrollchor></NavItem>
                     </Nav>

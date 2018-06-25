@@ -372,7 +372,7 @@ class SceneFooter extends Component {
             antialias: true,
         });
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(window.innerWidth,500);/*window.innerWidth, window.innerHeight*/
         this.mount.appendChild(this.renderer.domElement);
 
         this.clock = new THREE.Clock();

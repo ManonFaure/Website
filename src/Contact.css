@@ -1,36 +1,59 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
 
-.container{
+/*.contact {
+  margin: 0;
+  padding: 0;
+}*/
+/*.container{
     background-color: white;
     color: black;
     z-index: 5;
-    /*width: 100%;*/
-    margin: 0 auto;
     /*width: 50%;*/
-    text-align: center;
+    /*text-align: center;
     z-index: 4;
     position: relative;
-    margin: 0;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}*/
+
+
+.contacts {
+    background-color: white;
+    color: black;
+    z-index: 5;
+    position: relative;
+    margin: 0 auto;
+    margin-top: -2%;
+    margin-bottom: -2%;
     padding: 0;
+    text-align: center;
+
 }
 
-.container h1 {
+.form-container {
+  width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.contacts h1 {
   font-size: 300%;
   font-family: Trattatello, fantasy;
   text-transform: uppercase;
 }
 
-.container h1::first-letter {
+.contacts h1::first-letter {
   color: cornflowerblue;
   font-size: 130%;
 }
 
-.row__title{
+/*.row__title{
   text-align: center;
   font-size: 26px;
   font-weight: 400;
   margin-top: 0px;
-}
+}*/
 
 .btn{
     background-color:#3a9fff;

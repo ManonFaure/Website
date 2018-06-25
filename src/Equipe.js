@@ -4,9 +4,7 @@ import serli from './serli.png';
 class Equipe extends React.Component{
     render() {
         return (
-            <div ref="equipe">
-            <div className="paragraphe">
-                <section className="s-home target-section" >
+            <section className="paragraphe container-fluid" >
 
                     <div className="overlay"></div>
                     <div className="shadow-overlay"></div>
