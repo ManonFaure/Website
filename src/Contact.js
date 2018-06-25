@@ -8,7 +8,7 @@ class Contact extends React.Component {
     render() {
         return (
             
-            <div className="container">
+            <div className="contacts">
                 <h1>Nous contacter</h1>
                 {/*<div className="contacts">{/*Pas utile ?*/
                     /*<p className="contact__adress">

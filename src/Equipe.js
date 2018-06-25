@@ -5,7 +5,7 @@ import './Paragraphe.css';
 class Equipe extends React.Component{
     render() {
         return (
-            <section className="paragraphe" >
+            <section className="paragraphe container-fluid" >
 
                 <h1>Qui sommes nous ?</h1>
                 <h3>L'équipe</h3><br/>

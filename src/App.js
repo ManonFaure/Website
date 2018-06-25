@@ -62,7 +62,7 @@ class App extends React.Component{
 				
 				<div id="footer">
 					<Footer width={window.innerWidth}
-                          height= '200' />
+                          height= {window.innerHeight /4} />{/*200*/}
 				</div>
     		</body>
     	);

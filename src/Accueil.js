@@ -7,8 +7,8 @@ class Accueil extends React.Component{
     render(){
         return (
 
-            <section className="accueil">
-                <img className="image" src={telescope} alt="telescope"/>
+            <section className="accueil container-fluid">
+                <img className="image" src={telescope} alt="telescope" height={window.innerHeight}/>
 
                 <div className="centre animated bounceInDown">
                     <div className="texte">
@@ -24,21 +24,5 @@ class Accueil extends React.Component{
         )
     }
 }
-
-// essayer d'utiliser un dom virtuel : example :
-/*function CoolComponent() {
-
-    return <p>Youpi So Cool !</p>
-
-}
-
-
-ReactDOM.render(
-
-    <CoolComponent />,
-
-    document.getElementById('root')
-
-)*/
 
 export default Accueil;
