@@ -1,8 +1,5 @@
-
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import * as THREE from 'three'
-
-
 
 
 class BackgroundMaterial extends THREE.RawShaderMaterial {
@@ -157,11 +154,13 @@ class BackgroundMaterial extends THREE.RawShaderMaterial {
 
     `,
         uniforms: {
-            resolution: { value: new THREE.Vector2(
+            resolution: {
+                value: new THREE.Vector2(
                     window.innerWidth * window.devicePixelRatio,
                     window.innerHeight * window.devicePixelRatio,
-                ) },
-            globalTime: { value: performance.now() / 1000 },
+                )
+            },
+            globalTime: {value: performance.now() / 1000},
         },
         side: THREE.BackSide,
     };
@@ -344,7 +343,7 @@ class TreeMaterial extends THREE.RawShaderMaterial {
       }
     `,
         uniforms: {
-            globalTime: { value: performance.now() / 1000 },
+            globalTime: {value: performance.now() / 1000},
         },
         transparent: true,
     };
@@ -363,7 +362,7 @@ class TreeMaterial extends THREE.RawShaderMaterial {
 
 class SceneFooter extends Component {
     componentDidMount() {
-        this. camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
+        this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
         this.camera.position.z = 40;
 
         this.scene = new THREE.Scene();
@@ -392,9 +391,9 @@ class SceneFooter extends Component {
         this.scene.add(this.tree);
 
         MountainMaterial.uniforms = {
-            fogColor: { value: this.scene.fog.color },
-            fogNear: { value: this.scene.fog.near },
-            fogFar: { value: this.scene.fog.far },
+            fogColor: {value: this.scene.fog.color},
+            fogNear: {value: this.scene.fog.near},
+            fogFar: {value: this.scene.fog.far},
         };
         const mountainMaterial = new MountainMaterial();
         const mountainGeometry = new THREE.PlaneGeometry(600, 200, 1, 1);
@@ -426,8 +425,10 @@ class SceneFooter extends Component {
     render() {
         return (
             <div
-                style={{ width: '400px', height: '400px' }}
-                ref={(mount) => { this.mount = mount }}
+                style={{width: '400px', height: '400px'}}
+                ref={(mount) => {
+                    this.mount = mount
+                }}
             />
         )
     }
