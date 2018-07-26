@@ -1,7 +1,12 @@
 import React from 'react';
-import './App.css';
-import './base.css';
+//import './App.css';
+// import './base.css';
+import './stylesheets/Paragraphe.css';
 
+/**
+ * La classe Public créée un des paragraphes de la page.
+ * Ce composant répond au style commun aux autres paragraphes : Paragraphe.css
+ */
 
 class Public extends React.Component{
     render() {
@@ -35,6 +40,5 @@ class Public extends React.Component{
         )
     }
 }
-
 
 export default Public;

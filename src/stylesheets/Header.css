@@ -1,0 +1,45 @@
+/*
+* Style des pop-up de connection
+*/
+
+.titre {
+  width: 150%;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.logSign:hover {
+  text-decoration: underline;
+}
+.corps {
+  margin-left: 25%;
+  display : block;
+	position : absolute;
+}
+
+form .form__body input {
+  width: 250px;
+  padding: 8px;
+  margin: 7px;
+  border: 1px solid #cccdd1;
+  border-radius: 5px;
+  outline: none;
+}
+form .form__body input:focus {
+  border-color: cornflowerblue;
+}
+
+form .form__body button, .validButton {
+  width: 250px;
+  padding: 14px;
+  margin-top: 10px;
+  background-color: cornflowerblue;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

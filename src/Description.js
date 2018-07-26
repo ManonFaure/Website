@@ -1,4 +1,10 @@
 import React from 'react';
+import './stylesheets/Paragraphe.css';
+
+/**
+ * La classe Description créée un des paragraphes de la page.
+ * Ce composant répond au style commun aux autres paragraphes : Paragraphe.css
+ */
 
 class Description extends React.Component{
     render() {

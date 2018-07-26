@@ -1,7 +1,11 @@
 import React from 'react';
-import './App.css';
-import './base.css';
+import './stylesheets/base.css';
+import './stylesheets/Paragraphe.css';
 
+/**
+ * La classe Equipe créée un des paragraphes de la page.
+ * Ce composant répond au style commun aux autres paragraphes : Paragraphe.css
+ */
 
 class Naissance extends React.Component{
     render() {

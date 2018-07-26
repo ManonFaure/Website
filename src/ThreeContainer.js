@@ -28,7 +28,6 @@ class Scene extends Component {
     this.animate = this.animate.bind(this)
     this.state = { x: 0, y: 0 };
   }
-  
 
   componentDidMount() {
 
@@ -48,17 +47,18 @@ class Scene extends Component {
     scene.add(stars)
 
     /*======================== Soleil ==========================*/
-    const Soleil = this.createSun()
+    const Soleil = this.createPlanet(soleil, soleil, 6.95508, 0, 0, 0)
     const Photosphere = this.createPhotosphere()
+
     scene.add(Soleil)
     scene.add(Photosphere)
 
     /*======================== Mercure ==========================*/
-    const Mercure = this.createMercury()
+    const Mercure = this.createPlanet(mercure, mercurebump, 0.244, 100, 0, 5)//10,0,5
     scene.add(Mercure)
 
     /*======================== Venus ==========================*/
-    const Venus = this.createVenus()
+    const Venus = this.createPlanet(venus, venusbump, 0.6052, 100, 0, 11)//1,0,11
     scene.add(Venus)
 
     /*======================== Terre ==========================*/
@@ -68,45 +68,43 @@ class Scene extends Component {
     scene.add(Nuage)
 
     /*======================== Mars ==========================*/
-    const Mars = this.createMars()
+    const Mars = this.createPlanet(mars, marsbump, 0.339, -100, 0, 11)//-13,0,11
     scene.add(Mars)
 
     /*======================== Jupiter ==========================*/
-    const Jupiter = this.createJupiter()
+    const Jupiter = this.createPlanet(jupiter, jupiter, 1.69911, 100, 0, 1)//22,0,1
     scene.add(Jupiter)
 
     /*======================== Saturne ==========================*/
-    const Saturne = this.createSaturn()
+    const Saturne = this.createPlanet(saturne, saturne, 1.3232, -100, 0, 15)//-18,0,15
     const SaturneRing = this.createSaturnRing()
     scene.add(Saturne)
     scene.add(SaturneRing)
 
     /*======================== Uranus ==========================*/
-    const Uranus = this.createUranus()
+    const Uranus = this.createPlanet(uranus, uranus, 1.25362, -100, 0, 10)//-29,0,10
     const UranusRing = this.createUranusRing()
     scene.add(Uranus)
     scene.add(UranusRing)
 
     /*======================== Neptune ==========================*/
-    const Neptune = this.createNeptune()
+    const Neptune = this.createPlanet(neptune, neptune, 1.24622, 100, 0, 0)//35,0,0
     scene.add(Neptune)
 
-
+    /*==================================================*/
     camera.position.z = 2
     camera.position.z = 35
 
-    window.addEventListener('windowresize', ()=> {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.updateProjectionMatrix();
+    window.addEventListener('resize', ()=> {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
     document.addEventListener('mousemove', (event)=>{
     
       let mouseX = new THREE.Vector2(); 
       let mouseY = new THREE.Vector2(); 
-     
-      //console.log(" mouseX : " ,  mouseX )
 
       mouseX = event.clientX - window.innerWidth / 2;
       mouseY = event.clientY - window.innerHeight / 2;
@@ -161,21 +159,26 @@ class Scene extends Component {
     return new THREE.Points(stargeometry, starMaterial);
   }
 
-  /*======================== Soleil ==========================*/
+  /*======================== Planète ==========================*/
+  createPlanet(texture, textureBump, radius, posX, posY, posZ){
+    const texturePlanete = new THREE.TextureLoader().load( texture );
+    const texturePlaneteBump = new THREE.TextureLoader().load( textureBump )
 
-  createSun() {
-    const textureSoleil = new THREE.TextureLoader().load( soleil );
-
-    const SoleilGeometry = new THREE.SphereGeometry(6.95508, 32, 32)
-    const SoleilMaterial = new THREE.MeshPhongMaterial({
-      map: textureSoleil,
-      bumpMap: textureSoleil,
+    const PlaneteGeometry = new THREE.SphereGeometry(radius, 32, 32)
+    const PlaneteMaterial = new THREE.MeshPhongMaterial({
+      map: texturePlanete,
+      bumpMap: texturePlaneteBump,
       bumpScale: 0.05, })
-    const Soleil = new THREE.Mesh(SoleilGeometry, SoleilMaterial)
+    const Planete = new THREE.Mesh(PlaneteGeometry, PlaneteMaterial)
 
-    return Soleil
+    Planete.position.x = posX;
+    Planete.position.y = posY;
+    Planete.position.z = posZ;
+
+    return Planete
   }
 
+  /*======================== Soleil ==========================*/
   createPhotosphere() {
     const texturePhotosphere = new THREE.TextureLoader().load( photosphere )
     const PhotosphereGeometry = new THREE.SphereGeometry(7.25508, 32, 32)
@@ -188,64 +191,6 @@ class Scene extends Component {
     const Photosphere = new THREE.Mesh(PhotosphereGeometry, PhotosphereMaterial)
 
     return Photosphere
-  }
-
-  /*======================== Mercure ==========================*/
-  createMercury() {
-    const textureMercure = new THREE.TextureLoader().load( mercure )
-    const textureMercureBump = new THREE.TextureLoader().load( mercurebump )
-
-    const MercureGeometry = new THREE.SphereGeometry(0.244, 32, 322)
-    const MercureMaterial = new THREE.MeshPhongMaterial({
-      map: textureMercure,
-      bumpMap: textureMercureBump,
-      bumpScale: 0.005 })
-    const Mercure = new THREE.Mesh(MercureGeometry, MercureMaterial)
-
-    Mercure.position.x = 10;
-    Mercure.position.y = 0;
-    Mercure.position.z = 5;
-
-    /*Mercure.rotateOnAxis( 10, 0 );*/
-
-    return Mercure
-  }
-
-  /*moveMercure(){
-    const mercure = createMercure
-    if (this.Mercure.position.x < 10){
-      console.log("Mercure pos : ", this.Mercure.position.x)
-      this.Mercure.position.x =+ 5
-    }
-  }*/
-  /*moveMercure() {
-    //var scrollY = window.scrollY
-    var scrollY =  window.pageYOffset
-    console.log("scrollY : "+ scrollY)
-      if ( scrollY > 100 ) {
-        console.log( " le scroll est superieur a 300 ! ")
-        new TWEEN.Tween(mercure.position ).to( {x:10 , y:0 , z:5 } , 2500 ).easing( TWEEN.Easing.Quadratic.InOut).start();
-        /*document.removeEventListener("wheel", moveMercure);*/
-     /* }
-  }*/
-
-  /*======================== Venus ==========================*/
-  createVenus() {
-    const textureVenus = new THREE.TextureLoader().load( venus )
-    const textureVenusBump = new THREE.TextureLoader().load( venusbump )
-
-    const VenusGeometry = new THREE.SphereGeometry(0.6052, 32, 32)
-    const VenusMaterial = new THREE.MeshPhongMaterial({
-      map: textureVenus,
-      bumpMap: textureVenusBump,
-      bumpScale: 0.005, })
-    const Venus = new THREE.Mesh(VenusGeometry, VenusMaterial)
-
-    Venus.position.x = 1;
-    Venus.position.y = 0;
-    Venus.position.z = 11;
-
-    return Venus
   }
 
   /*======================== Terre ==========================*/
@@ -263,7 +208,7 @@ class Scene extends Component {
       specular: new THREE.Color('grey'), })
     const Terre = new THREE.Mesh(TerreGeometry, TerreMaterial)
 
-    Terre.position.x = 12;
+    Terre.position.x = 100;//12
     Terre.position.y = 0;
     Terre.position.z = 10;
 
@@ -281,67 +226,14 @@ class Scene extends Component {
       opacity		: 0.8 })
     const Nuage = new THREE.Mesh(NuageGeometry, NuageMaterial)
 
-    Nuage.position.x = 12;
+    Nuage.position.x = 100;//12
     Nuage.position.y = 0;
     Nuage.position.z = 10;
 
     return Nuage
   }
-  
-  /*======================== Mars ==========================*/
-  createMars() {
-    const textureMars = new THREE.TextureLoader().load( mars )
-    const textureMarsBump = new THREE.TextureLoader().load( marsbump )
-
-    const MarsGeometry = new THREE.SphereGeometry(0.339, 32, 32)
-    const MarsMaterial = new THREE.MeshPhongMaterial({
-      map: textureMars,
-      bumpMap	: textureMarsBump,
-		  bumpScale: 0.05 })
-    const Mars = new THREE.Mesh(MarsGeometry, MarsMaterial)
-
-    Mars.position.x = -13;
-    Mars.position.y = 0;
-    Mars.position.z = 11;
-
-    return Mars
-  }  
-
-  /*======================== Jupiter ==========================*/
-  createJupiter() {
-    const textureJupiter = new THREE.TextureLoader().load( jupiter )
-
-    const JupiterGeometry = new THREE.SphereGeometry(1.69911, 32, 32)
-    const JupiterMaterial = new THREE.MeshPhongMaterial({
-      map: textureJupiter,
-      bumpMap	: textureJupiter,
-      bumpScale: 0.02 })
-    const Jupiter = new THREE.Mesh(JupiterGeometry, JupiterMaterial)
-
-    Jupiter.position.x = 22;
-    Jupiter.position.y = 0;
-    Jupiter.position.z = 1;
-
-    return Jupiter
-  }
 
   /*======================== Saturne ==========================*/
-  createSaturn() {
-    const textureSaturne = new THREE.TextureLoader().load( saturne )
-
-    const SaturneGeometry = new THREE.SphereGeometry(1.3232, 32, 32)
-    const SaturneMaterial = new THREE.MeshPhongMaterial({map: textureSaturne,
-      bumpMap	: textureSaturne,
-      bumpScale: 0.05 })
-    const Saturne = new THREE.Mesh(SaturneGeometry, SaturneMaterial)
-
-    Saturne.position.x = -18;//-20
-    Saturne.position.y = 0;
-    Saturne.position.z = 15;
-
-    return Saturne
-  }
-  
   createSaturnRing() {
     const textureSaturneRing = new THREE.TextureLoader().load( saturnering1 )
     const SaturneRingGeometry = new THREE.RingGeometry(1.2*1.5, 2*1, 16*2, 5, 0, 3.14*2);
@@ -353,7 +245,7 @@ class Scene extends Component {
     const SaturneRing = new THREE.Mesh( SaturneRingGeometry, SaturneRingMaterial );
     SaturneRing.lookAt(new THREE.Vector3(0.5,-4,1))
 
-    SaturneRing.position.x = -18;
+    SaturneRing.position.x = -100;//-18
     SaturneRing.position.y = 0;
     SaturneRing.position.z = 15;
 
@@ -361,22 +253,6 @@ class Scene extends Component {
   }
 
   /*======================== Uranus ==========================*/
-  createUranus() {
-    const textureUranus = new THREE.TextureLoader().load( uranus )
-
-    const UranusGeometry = new THREE.SphereGeometry(1.25362, 32, 32)
-    const UranusMaterial = new THREE.MeshPhongMaterial({map: textureUranus,
-      bumpMap	: textureUranus,
-      bumpScale: 0.05 })
-    const Uranus = new THREE.Mesh(UranusGeometry, UranusMaterial)
-
-    Uranus.position.x = -29;//-30
-    Uranus.position.y = 0;
-    Uranus.position.z = 10;
-
-    return Uranus
-  }
-
   createUranusRing() {
     const textureUranusRing = new THREE.TextureLoader().load( uranusring )
 
@@ -389,31 +265,36 @@ class Scene extends Component {
     const UranusRing = new THREE.Mesh( UranusRingGeometry, UranusRingMaterial );
     UranusRing.lookAt(new THREE.Vector3(5,-4,1))
 
-    UranusRing.position.x = -29;
+    UranusRing.position.x = -100;//-29
     UranusRing.position.y = 0;
     UranusRing.position.z = 10;
 
     return UranusRing
   }
 
-  /*======================== Neptune ==========================*/
-  createNeptune() { 
-    const textureNeptune = new THREE.TextureLoader().load( neptune )
+  //Pour les planètes qui doivent se déplacer de gauche à droite
+  MovePlaneteGaD(planete, scroll, posX) {
+    var scrollY =  window.pageYOffset;
+    if (scrollY > scroll){
+      if(planete.position.x < posX){
+        planete.position.x += 2;
+      }
 
-    const NeptuneGeometry = new THREE.SphereGeometry(1.24622, 32, 32)
-    const NeptuneMaterial = new THREE.MeshPhongMaterial({map: textureNeptune,
-      bumpMap	: textureNeptune,
-      bumpScale: 0.05 })
-    const Neptune = new THREE.Mesh(NeptuneGeometry, NeptuneMaterial)
-
-    Neptune.position.x = 35;
-    Neptune.position.y = 0;
-    Neptune.position.z = 0;
-
-    return Neptune
+    }
   }
 
+  //Pour les planètes qui doivent se déplacer de droite à gauche
+  MovePlaneteDaG(planete, scroll, posX) {
+    var scrollY =  window.pageYOffset;
+    if (scrollY > scroll){
+      if(planete.position.x > posX){
+        planete.position.x -= 2;
+      }
 
+    }
+  }
+
+  
   componentWillUnmount() {
     this.stop()
     this.mount.removeChild(this.renderer.domElement)
@@ -456,6 +337,18 @@ class Scene extends Component {
     this.UranusRing.rotation.y += 0.001
     this.Neptune.rotation.x -= 0.0015
     this.Neptune.rotation.y -= 0.0015
+
+    this.MovePlaneteDaG(this.Mercure, 300, 10);
+    this.MovePlaneteDaG(this.Venus, 300, 1);
+    this.MovePlaneteDaG(this.Terre, 1400, 12);
+    this.MovePlaneteDaG(this.Nuage, 1400, 12);
+    this.MovePlaneteGaD(this.Mars, 1400, -13);
+    this.MovePlaneteDaG(this.Jupiter, 2800, 22);
+    this.MovePlaneteGaD(this.Saturne, 2800, -18);
+    this.MovePlaneteGaD(this.SaturneRing, 2800, -18);
+    this.MovePlaneteGaD(this.Uranus, 4500, -29);
+    this.MovePlaneteGaD(this.UranusRing, 4500, -29);
+    this.MovePlaneteDaG(this.Neptune, 4500, 35);
 
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate)

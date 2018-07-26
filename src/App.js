@@ -1,18 +1,16 @@
-import React/*, { Component }*/ from 'react';
+import React from 'react';
 import Header from './Header.js';
-import Accueil from './Accueil.js';
-import ThreeContainer from './ThreeContainer.js';
-import Equipe from './Equipe.js';
-import Naissance from './Naissance.js';
-import Oiseau from './Oiseau.js';
-import Description from './Description.js';
-import Public from './Public.js';
-import './Oiseau.css';
-import Contact from './Contact.js';
-import Footer from './Footer.js';
+// import Profil from './Profil.js';
+// import MainPage from './MainPage';
+
+/*
+* Cette classe est la classe principale de notre application. 
+* Elle appelle le composant Header qui gère ensuite l'affichage des pages en fonction des routes.
+*/
 
 class App extends React.Component {
-    constructor() {
+
+	constructor() {
         super();
         this.state = {
             scrollPosition: undefined
@@ -34,59 +32,30 @@ class App extends React.Component {
 
 
     render() {
-        console.log(this.state.scrollPosition)
+        
+        //let CheminComplet = document.location.href;
+        /* let CheminRepertoire  = CheminComplet.substring( 0 ,CheminComplet.lastIndexOf( "/" ) );
+        let NomDuFichier     = CheminComplet.substring(CheminComplet.lastIndexOf( "/" )+1 ); */
+        /* console.log("Chemin Complet: ", CheminComplet);
+        console.log("Chemin Repertoire: ", CheminRepertoire);
+        console.log("Nom du Fichier: ", NomDuFichier); */
+        /* let url = "http://localhost:3000/";
+        if (url = "http://localhost:3000/profil"){
+            <Profil/> 
+        }
+ */
+        /* if (CheminComplet === "http://localhost:3000/profil"){
+            <Profil />
+        }else{
+            <MainPage />
+        } */
         return (
-            <body className="top">
 
-            <Header/>
-            <Accueil/>
-            <div className="divVid"></div>
+            <div className="top">
 
-            <div className="divCanvas">
-                <ThreeContainer position={this.state.scrollPosition}
-                />
+                <Header/> {/*Barre de navigation*/}
+                
             </div>
-
-            <div id="equipe">
-                <Equipe/>
-            </div>
-
-            <div className="divVid"></div>
-
-            <div id="naissance">
-                <Naissance/>
-            </div>
-
-            <div className="divVid"></div>
-
-            <div id="description">
-                <Description/>
-            </div>
-
-            <div className="divVid"></div>
-
-            <div id="public">
-                <Public/>
-            </div>
-
-            <div className="divVid"></div>
-
-            <div id="banner">
-                <div id="cloud-scroll"></div>
-                <div id="oiseau">
-                    <Oiseau/>
-                </div>
-            </div>
-
-            <div id="contact">
-                <Contact/>
-            </div>
-
-            <div id="footer">
-                <Footer width={window.innerWidth}
-                        height='200'/>
-            </div>
-            </body>
         );
     }
 }

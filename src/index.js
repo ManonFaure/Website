@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './stylesheets/index.css';
 import App from './App.js';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+// import {Router, hashHistory as history} from 'react-router';
+// import Header from './Header.js';
 import registerServiceWorker from './registerServiceWorker';
-import './css/bootstrap.css';
+import './bootstrap/css/bootstrap.css';
 
 ReactDOM.render((
     <BrowserRouter>

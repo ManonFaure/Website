@@ -1,7 +1,11 @@
 import React from 'react';
-import './Oiseau.css';
+import './stylesheets/Oiseau.css';
 import oiseau from './img/oiseau_dos.png';
 
+/**
+ * La classe Oiseau créée un paragraphe légérement différent des autres.
+ * On affiche un oiseau statique sur un fond css dynamique
+ */
 
 class Public extends React.Component{
     render() {

@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 import * as THREE from 'three'
 
+/**
+ * Cette classe créée le bas de page de l'application.
+ * Il s'agit d'une scène 3D créant une forêt en mouvement devant un ciel étoilé
+ */
 
 class BackgroundMaterial extends THREE.RawShaderMaterial {
     static shader = {
