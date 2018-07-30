@@ -6,6 +6,7 @@ import { Modal, Nav, NavItem, Navbar } from 'react-bootstrap';
 import Profil from './Profil';
 import MainPage from './MainPage';
 import './stylesheets/Header.css';
+import * as Utilisateur from './Utilisateurs.js';
 
 
 /** 
@@ -87,10 +88,13 @@ class Header extends React.Component {
     }
 
     handleSubmitInscription(event) {
+        var user = new Utilisateur();
+        var utilisateur = Utilisateur.getUser();
+        console.log(utilisateur)
         const pseudo = this.state.pseudoInscription
         const email = this.state.emailInscription
         const password = this.state.passwordInscription
-        fetch("http://192.168.86.35:8080/login", { method: "POST", header: { 'Content-Type': "application/json" }, body: JSON.stringify({ pseudo, email, password }) })
+        /* fetch("http://192.168.86.35:8080/login", { method: "POST", header: { 'Content-Type': "application/json" }, body: JSON.stringify({ pseudo, email, password }) })
             .then((token) => {
                 console.log(token.headers.map.token)
                 for (var p of token.headers) {
@@ -100,7 +104,10 @@ class Header extends React.Component {
             })
             .catch((erreur) => {
                 alert(erreur.message);
-            })
+            }) */
+        for (let i=0; i< user.lenght; i++){
+
+        }
         alert('Pseudonyme: ' + this.state.pseudoInscription);
         alert('Mail: ' + this.state.emailInscription);
         alert('Password: ' + this.state.passwordInscription);

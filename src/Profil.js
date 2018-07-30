@@ -4,21 +4,22 @@ import nasa1 from './img/NASA1.jpg';
 import nasa2 from './img/NASA2.jpg';
 import nasa3 from './img/NASA3.jpg';
 import param from './img/parametre.png';
-import header from  './img/headerProfil.jpg';
 import { Button, Carousel } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
+import './Utilisateurs.js';
+import abonnes from './img/abonnement.png';
 
 
 // https://www.supinfo.com/articles/single/4556-reactjs-votre-premiere-application
 // https://medium.com/inspiration-supply/profile-page-design-inspiration-31878d23f906
 
+const DEFAULT_STATE = { newPseudo: ''} 
+let PSEUDO = "Armstrong"
+
 class Profil extends React.Component {
-    /* constructor(props, context, nom, prenom, pseudonyme) {
-        super(props, context); */
+
     constructor(props){
         super(props);
-
-        /* this.props.nom = nom */
 
         this.state = {
             showParametres: false,
@@ -26,8 +27,10 @@ class Profil extends React.Component {
             oldPassword: '',
             emailInscription: '',
             newPassword: '',
-            newPseudo: '',
-            newDescription: ''
+            newPseudo: PSEUDO,
+            pseudo: '',
+            nbAbo: 0
+            /*newDescription: '',*/
         };
 
         this.handleShowParametres = this.handleShowParametres.bind(this);
@@ -67,57 +70,86 @@ class Profil extends React.Component {
     handleSubmitParametres(event) {
         alert('Ancien mdp: ' + this.state.oldPassword);
         alert('Password: ' + this.state.newPassword);
-        event.prenventDefault();
     }
 
     handleSubmitModif(event) {
+        console.log("pseudo actuel", this.state.newPseudo)
         alert('Nouveau pseudo: ' + this.state.newPseudo);
         alert('Description: ' + this.state.newDescription);
-        event.prenventDefault();
+        //const pseudo = this.modifPseudo();
+        PSEUDO = this.state.newPseudo;
+        
     }
 
     /**
      * 
+     * @param {*} pseudo 
+     * Function permettant de changer l'ancien pseudo par le nouveau défini par l'utilisateur.
+     * /!\ Problème : À la fermeture du modal, les modifs ne restent pas 
+     */
+    /* modifPseudo = () => {
+        const modifPseudo = this.state.newPseudo
+        console.log("modifPseudo :", modifPseudo);
+        this.setState({newPseudo : modifPseudo});
+        console.log("pseudo :", this.state.newPseudo);
+
+    } */
+    
+    
+    /**
+     * 
      * @param {*} nbAbo => nombre courant d'abonnés 
-     * permet d'incrémenter le nombre d'abonnés si un utilisateur s'abonne
+     * Permet d'incrémenter le nombre d'abonnés si un utilisateur s'abonne
+     * /!\ Manque le style du bouton d'abonnement + l'initialisation du nombre d'abonnés(récupérer les infos du serveur)
+     * Bouton à géré avec un listener onClick : <button onClick={ ( ) => this.increment() }>
      */
 
-    countAbo(nbAbo){
-        nbAbo=1
-        return (nbAbo+1)
+    countAbo(){
+        this.setState({nbAbo : this.state.nbAbo+1})
     }
+
+    /**
+     * https://gkueny.fr/react-lecon-2
+     */
+    randomPseudo = () => {
+
+        // On s'amuse un peu ;)
+        let randomPseudo    = ""
+        const possible      = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+        const size          = Math.floor(Math.random() * 10) + 5
+
+        for( let i=0; i < size; i++ )
+            randomPseudo += possible.charAt(Math.floor(Math.random() * possible.length))
+
+        // On met à jour le state via la fonction "setState" héritée de la classe Component
+        this.setState({
+            newPseudo : randomPseudo
+        })
+    } 
 
 
     render() {
 
-        let abonnes = this.countAbo();
-        console.log(abonnes);
+        //let abonnes = this.countAbo();
 
         let nom = this.props.nom;
         nom = "Armstrong";
-        console.log(nom);
 
         let prenom = this.props.prenom;
         prenom = "Neil";
-        console.log(prenom);
 
-        let pseudonyme = this.props.pseudonyme;
-        pseudonyme = "Gemini";
-        console.log(pseudonyme);
+        /* let pseudonyme = this.state.newPseudo; */
 
         let description= this.props.description;
         description = "Une petite description de l'utilisateur, ses passions, depuis combien de temps il pratique l'astronomie"
-        console.log(description);
-
-        /* var div = document.getElementsByClassName('photo');
-        div.addEventListener('click', (event) => {
-            this.countAbo(event.abonnes);
-        }); */
+         
+        console.log("pseudo actuel", this.state.newPseudo)
 
         return (
             <section className="profil" >
             
-
+                
                 {/** Haut de page */}
                 <div className="bandeau">{/* <img src={header} alt="header"/> */}</div>
         
@@ -127,10 +159,11 @@ class Profil extends React.Component {
                 </div>
                 <div className="user">
                     <h4 className="pseudo">{nom} {prenom}</h4>
-                    <p className="description">Astronome {pseudonyme}</p><br/>
+                    <p className="description">Astronome {this.state.newPseudo}</p><br/>
                     <div className="ligne"></div><br/>
                     <div className="description">{description}</div>
                 </div><br/><br/>
+                <p> <a onClick={ this.randomPseudo } >Changer le pseudo !</a> </p>
 
                 {/* Boutons permettant de modifier son profil et les paramètres de son compte */}
                 <div className="parametres">
@@ -141,16 +174,15 @@ class Profil extends React.Component {
                                 <Modal.Title className="titre">Modifier votre profil</Modal.Title>
                             </Modal.Header>
                             <Modal.Body className="corps">
-                                <form onSubmit={this.handleSubmitModif}>
+                                <form name="profil" onSubmit={this.handleSubmitModif}>
                                     <div className="form__body">
-                                        <label for="pays">Modifier votre pseudonyme ?</label>
-                                        <input type="text" id="newPseudo" value={this.state.newPseudo} onChange={(event) => { this.handleChangeModif({ newPseudo: event.target.value }) }} placeholder="Ancien mot de passe" />                               
-                                        <div class="form-group">
-                                            <label for="pays">Modifier votre description</label>
-                                            <textarea class="form-control" rows="5" id="newDescription" value={this.state.newDescription} onChange={(event) => { this.handleChangeModif({ newDescription: event.target.value }) }} placeholder="Nouveau mot de passe"></textarea>
-                                        </div>  
+                                        <label htmlFor="pays">Modifier votre pseudonyme ?</label>
+                                        <input name="newPseudo" type="text" id="newPseudo" value={this.state.newPseudo} onChange={(event) => { this.handleChangeModif({ newPseudo: event.target.value }) }} placeholder="Nouveau pseudo" />                               
+                                        <label htmlFor="pays">Modifier votre description</label><br/>
+                                        <textarea className="form-control" rows="5" id="newDescription" value={this.state.newDescription} onChange={(event) => { this.handleChangeModif({ newDescription: event.target.value }) }} placeholder="Nouvelle description"></textarea>
                                     </div>
                                     <input type="submit" className="validButton" value="Valider les changements" />
+                                    
                                 </form>
                             </Modal.Body>
                         </Modal>
@@ -178,10 +210,13 @@ class Profil extends React.Component {
 
 
                 </div><br/><br/>
+
+                <a className="follow" onClick={ ( ) => this.countAbo() }><img src={abonnes} alt="header"/></a>
+
                 <div className="cases">
                     <div className="abonne">
                         <p>Abonné(e)(s)</p>
-                        <p>{abonnes}</p>
+                        <p>{this.state.nbAbo}</p>
                     </div>
                     <div className="abonnement">
                         <p>Abonnement(s)</p>
@@ -223,6 +258,5 @@ class Profil extends React.Component {
         )
     }
 }
-// abonnés, abonnements, publications
-//astronome, pseudo
+
 export default Profil;
