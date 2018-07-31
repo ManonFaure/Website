@@ -1,6 +1,4 @@
 import React from 'react';
-//import './App.css';
-// import './base.css';
 import './stylesheets/Paragraphe.css';
 
 /**

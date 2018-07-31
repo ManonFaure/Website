@@ -26,5 +26,4 @@ class Public extends React.Component{
     }
 }
 
-
 export default Public;

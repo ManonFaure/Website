@@ -4,6 +4,7 @@ import * as THREE from 'three'
 /**
  * Cette classe créée le bas de page de l'application.
  * Il s'agit d'une scène 3D créant une forêt en mouvement devant un ciel étoilé
+ * Le code à été copié sur codepen et adapté par Nathan
  */
 
 class BackgroundMaterial extends THREE.RawShaderMaterial {

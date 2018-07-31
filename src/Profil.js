@@ -163,7 +163,7 @@ class Profil extends React.Component {
                     <div className="ligne"></div><br/>
                     <div className="description">{description}</div>
                 </div><br/><br/>
-                <p> <a onClick={ this.randomPseudo } >Changer le pseudo !</a> </p>
+                <p> <a onClick={this.randomPseudo} >Changer le pseudo !</a> </p>
 
                 {/* Boutons permettant de modifier son profil et les paramètres de son compte */}
                 <div className="parametres">

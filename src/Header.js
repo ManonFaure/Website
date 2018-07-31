@@ -12,8 +12,7 @@ import * as Utilisateur from './Utilisateurs.js';
 /** 
  * La classe Header créée la barre de menu avec la librairie bootsrap
  * ainsi que les modals de connection et d'inscription
- * Elle se connecte au serveur distant afin de pouvoir récupérer le profil de l'utilisateur se connectant
- * https://medium.com/@everdimension/how-to-handle-forms-with-just-react-ac066c48bd4f
+ * Elle devrait se connecter au serveur distant afin de pouvoir récupérer le profil de l'utilisateur se connectant
  */
 
 class Header extends React.Component {
@@ -39,26 +38,29 @@ class Header extends React.Component {
         this.handleSubmitInscription = this.handleSubmitInscription.bind(this);
     }
 
+    // Fonction permettant de "cacher" le modal de connection (idem pour handleCloseInscription)
     handleCloseConnection() {
-        //const {pseudoConnection, emailConnection, passwordConnection} = this.state;
-        //signin(pseudoInscription, emailInscription, passwordInscription);
         this.setState({ showConnection: false });
     }
 
+    // Fonction permettant de rendre "visible" le modal de connection (idem pour handleShowInscription)
     handleShowConnection() {
         this.setState({ showConnection: true });
     }
 
+    // Fonction permettant de modifier la valeur du champ texte au fur et à mesure de la saisie de l'utilisateur (idem pour handleChangeConnection)
     handleChangeConnection(objet) {
         this.setState(objet);
     }
 
     handleCloseInscription() {
-        //const {pseudoInscription, emailInscription, passwordInscription} = this.state;
-        //sigin(pseudoInscription, emailInscription, passwordInscription);
         this.setState({ showInscription: false });
     }
 
+    /**
+     * Fonction censée envoyer les données de connection au serveur 
+     * /!\ Erreur lors de la connexion
+     */
     handleSubmitConnection(event) {
         const email = this.state.emailConnection
         const password = this.state.passwordConnection
@@ -94,20 +96,7 @@ class Header extends React.Component {
         const pseudo = this.state.pseudoInscription
         const email = this.state.emailInscription
         const password = this.state.passwordInscription
-        /* fetch("http://192.168.86.35:8080/login", { method: "POST", header: { 'Content-Type': "application/json" }, body: JSON.stringify({ pseudo, email, password }) })
-            .then((token) => {
-                console.log(token.headers.map.token)
-                for (var p of token.headers) {
-                    console.log(p)
-                }
-                
-            })
-            .catch((erreur) => {
-                alert(erreur.message);
-            }) */
-        for (let i=0; i< user.lenght; i++){
-
-        }
+        
         alert('Pseudonyme: ' + this.state.pseudoInscription);
         alert('Mail: ' + this.state.emailInscription);
         alert('Password: ' + this.state.passwordInscription);
@@ -120,7 +109,7 @@ class Header extends React.Component {
 
             <header className="s-header">
 
-                {/* Création des routes menant aux différents composants */}
+                {/* Création des routes menant aux différentes pages */}
                 <Switch>
                     <Route exact path="/" component={MainPage} />
                     <Route  exact path="/home" component={MainPage} />
@@ -137,7 +126,8 @@ class Header extends React.Component {
                     </Navbar.Header>
                     <Nav>
                         {/* Gestion du scroll avec la bibliothèque react-router-hash-link qui grâce au mot clé "smooth"
-                            permet de défiler jusqu'au composant lorsqu'on clique sur son lien dans la barre */}
+                          * permet de défiler jusqu'au composant lorsqu'on clique sur son lien dans la barre 
+                          */}
                         <NavItem eventKey={1}>
                             <div>
                                 <Link smooth to="/home#accueil">Accueil</Link>

@@ -5,40 +5,27 @@ import './stylesheets/Paragraphe.css';
 /**
  * La classe Contact créée le formulaire de contact situé en bas de page sur l'application web
  * Elle récupère chaque champ pour pouvoir envoyer leur contenu par mail
- * On utilise un mailto pour envoyer les champs = pas terrible
+ * /!\ On utilise un mailto pour envoyer les champs = pas terrible : l'utilisateur peut ensuite 
+ * modifier les champs qu'il avait déjà saisi => le formulaire n'est donc plus très utile
  */
 
 class Contact extends React.Component {
     constructor(props, context) {
     	super(props, context);
 
-        /* On stocke les noms des champs du formailaire dans le state */
+        /* On stocke les noms des champs du formulaire dans le state */
 		this.state = {
 			nom: '',
 			prenom: '',
 			email: '',
 			tel: '',
 			message: '',
-		};
-
-        /* Déclaration de la fonction d'envoi */
-		this.handleSubmit = this.handleSubmit.bind(this);       
+		};     
 	}
 
 	handleChange(objet) {
 		this.setState(objet);
 	}
-
-
-	handleSubmit(event) {
-		/*alert('Nom: '+ this.state.nom);
-		alert('Prenom:'+ this.state.prenom);
-		alert('Mail: '+ this.state.email);
-		alert('Téléphone: '+ this.state.tel);
-		alert('Message: '+ this.state.message);
-        alert('Message envoyé');*/
-        //event.prenventDefault();
-    } 
                   
     render() {
         
@@ -48,6 +35,10 @@ class Contact extends React.Component {
                 <h1>Nous contacter</h1>
    
                 <div className="form-container">
+                
+                    {/* Email à changer  
+                      * Il faudrait réactualiser la page après l'envoi du formulaire
+                      */}
                     <form className="form" action="mailto:manon.faure@serli.com?subject=Formulaire Open Stars" name="envoi" method="POST" encType="text/plain" onSubmit={this.handleSubmit}> 
                         <input type="hidden" name="subject" value="Formulaire de contact"/>
                         <div className="form__field--half">
