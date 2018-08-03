@@ -13,7 +13,6 @@ import abonnes from './img/abonnement.png';
 // https://www.supinfo.com/articles/single/4556-reactjs-votre-premiere-application
 // https://medium.com/inspiration-supply/profile-page-design-inspiration-31878d23f906
 
-const DEFAULT_STATE = { newPseudo: ''} 
 let PSEUDO = "Armstrong"
 
 class Profil extends React.Component {

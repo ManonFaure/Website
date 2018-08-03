@@ -8,11 +8,15 @@ import MainPage from './MainPage';
 import './stylesheets/Header.css';
 import * as Utilisateur from './Utilisateurs.js';
 
+/* ============================== */
+
 
 /** 
  * La classe Header créée la barre de menu avec la librairie bootsrap
  * ainsi que les modals de connection et d'inscription
  * Elle devrait se connecter au serveur distant afin de pouvoir récupérer le profil de l'utilisateur se connectant
+ * 
+ * https://getbootstrap.com/docs/3.3/components/#navbar
  */
 
 class Header extends React.Component {
@@ -26,7 +30,8 @@ class Header extends React.Component {
             emailInscription: '',
             passwordInscription: '',
             emailConnection: '',
-            passwordConnection: ''
+            passwordConnection: '',
+            user : {}
 
         };
 
@@ -64,21 +69,37 @@ class Header extends React.Component {
     handleSubmitConnection(event) {
         const email = this.state.emailConnection
         const password = this.state.passwordConnection
-        fetch("http://192.168.86.35:8080/login", { method: "POST", header: { 'Content-Type': "application/json" }, body: JSON.stringify({ email, password }) })
-            .then((token) => {
-                console.log(token.headers.map.token)
-                //console.log(token.json())
-                for (var p of token.headers) {
-                    console.log(p)
+        fetch("http://192.168.86.35:8080/login", 
+            { 
+                method: "POST", 
+                 
+                body: JSON.stringify({ email, password }) 
+            })
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200){
+                alert(response.headers.token)
+                     for (var p of response.headers) {
+                        console.log(p)
+                        if (p[0] === "token"){
+                            sessionStorage.setItem("token", p[1])
+                            fetch("http://192.168.86.35:8080/api/compteutilisateur",{
+                                method: "GET",
+                                headers: { 'token': p[1] }
+                            })
+                            .then((response) => response.text())
+                            .then((user) => this.setState({user}))
+                        }
+                    } 
                 }
-
             })
             .catch((erreur) => {
                 alert(erreur.message);
             })
+           
         alert('Mail: ' + this.state.emailConnection);
         alert('Password: ' + this.state.passwordConnection);
-        event.prenventDefault();
+        // event.prenventDefault();
     }
 
     handleShowInscription() {
@@ -90,12 +111,9 @@ class Header extends React.Component {
     }
 
     handleSubmitInscription(event) {
-        var user = new Utilisateur();
+        
         var utilisateur = Utilisateur.getUser();
         console.log(utilisateur)
-        const pseudo = this.state.pseudoInscription
-        const email = this.state.emailInscription
-        const password = this.state.passwordInscription
         
         alert('Pseudonyme: ' + this.state.pseudoInscription);
         alert('Mail: ' + this.state.emailInscription);
@@ -103,8 +121,10 @@ class Header extends React.Component {
         event.prenventDefault();
     }
 
-
     render() {
+
+
+        
         return (
 
             <header className="s-header">
@@ -122,7 +142,7 @@ class Header extends React.Component {
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a href="">Open Stars</a>
-                        </Navbar.Brand>
+                        </Navbar.Brand><i className="fa fa-bars fa-2x"></i>
                     </Navbar.Header>
                     <Nav>
                         {/* Gestion du scroll avec la bibliothèque react-router-hash-link qui grâce au mot clé "smooth"
@@ -165,8 +185,9 @@ class Header extends React.Component {
                                 </Link>
                             </div>
                         </NavItem>
-                    </Nav>
-                    <Nav pullRight> {/* pullRight = on place les liens à droite de la barre*/}
+                    </Nav> 
+                    {/* pullRight = on place les liens à droite de la barre*/}
+                    <Nav pullRight> 
                         <NavItem className="logSign" eventKey={1} onClick={this.handleShowInscription}>
                             S'inscrire
                             <Modal show={this.state.showInscription} onHide={this.handleCloseInscription}>
@@ -188,12 +209,14 @@ class Header extends React.Component {
 
                         <NavItem className="logSign" eventKey={2} onClick={this.handleShowConnection}>
                             Se connecter
+                            {this.state.user.name}
                             <Modal show={this.state.showConnection} onHide={this.handleCloseConnection}>
                                 <Modal.Header closeButton>
                                     <Modal.Title className="titre">Connection</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body className="corps">
                                     <form onSubmit={this.handleSubmitConnection}>
+        
                                         <div className="form__body">
                                             <input type="email" id="emailConnection" value={this.state.emailConnection} onChange={(event) => { this.handleChangeConnection({ emailConnection: event.target.value }) }} placeholder="Email" />
                                             <input type="password" id="passwordConnection" value={this.state.passwordConnection} onChange={(event) => { this.handleChangeConnection({ passwordConnection: event.target.value }) }} placeholder="Mot de passe" />
@@ -204,7 +227,7 @@ class Header extends React.Component {
                             </Modal>
                         </NavItem >
                     </Nav>
-                </Navbar>;
+                </Navbar>
 
             </header>
         );

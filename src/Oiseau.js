@@ -11,6 +11,8 @@ class Public extends React.Component{
     render() {
         return (
 
+        <section className="oiseau">
+        <div id="cloud-scroll"></div>
             <div className="paragraphe2">
                 <div className="conteneur">
                     <h1>Histoire de l'oiseau à tête barrée</h1>
@@ -21,6 +23,7 @@ class Public extends React.Component{
                     </div>
                 </div>
         	</div>
+        </section>
 
         )
     }

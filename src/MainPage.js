@@ -57,10 +57,10 @@ class MainPage extends React.Component {
                 <div className="divVid"></div>
 
 
-                <div id="banner">
-                    <div id="cloud-scroll"></div> {/*Crée les nuages qui défilent*/}
+                <div className="banner">
+                    {/* <div id="cloud-scroll"></div> */} {/*Crée les nuages qui défilent*/}
                     <div id="oiseau">
-                        <Oiseau/>
+                        <Oiseau />
                     </div>
                 </div>
 

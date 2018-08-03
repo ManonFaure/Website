@@ -2,11 +2,10 @@
 * Style relatif à la classe Oiseau
 */
 
-#banner {
+.banner {
     background-image: linear-gradient( #000000, #0F056B);
     position: relative;
     width: 100%;
-    height: 950px;
     z-index: 5;
   }
   
@@ -44,7 +43,7 @@
   }
 
 .paragraphe2 {
-  top: 200px;
+  top: 3em;
 	margin: 0 auto;
 	width: 50%;
 	text-align: center;
